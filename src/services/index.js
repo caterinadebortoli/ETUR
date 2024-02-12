@@ -1,9 +1,8 @@
 import Customer from './customers.js';
 import { customers } from './customers.js';
+import { Create } from './customers.js';
 
-console.log("Hello World")
-const customerZeiss = new Customer("Zeiss","z2415")
-customers.push(customerZeiss)
+Create();
 function showcustomers(){
     return customers
 }
