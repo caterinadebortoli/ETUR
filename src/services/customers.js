@@ -6,10 +6,10 @@ export default class Customer {
   }
   export function Create(){
   
-    const customerName = "";
-    const customerNumber = "";
+    let customerName = "";
+    let customerNumber = "";
   
-    const question = prompt("Type in the Customer Name:", customerName);
+    let question = prompt("Type in the Customer Name:", customerName);
     console.log(question);
     question = prompt("Type in the Customer Number:", customerNumber);
     console.log(question);
