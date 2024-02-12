@@ -31,7 +31,9 @@ export function deleteCustomerById(id) {
 }
 
 
-
+export function showallcustomers(){
+    return customers
+}
 
   export const customers=[]
  
