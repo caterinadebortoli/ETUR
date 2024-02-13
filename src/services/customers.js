@@ -22,9 +22,14 @@ export function validateid(id){
     return is_valid
 }
 
+export function doesCostumerExist(id){
+   return customers.some(customer=>customer.number==id)
+}
+
 export function CreateCustomer(id,customerName){
     let is_valid=validateid(id)
-    if (is_valid)
+    let does_exist=doesCostumerExist(id)
+    if (is_valid && does_exist==false)
     {
         Create(customerName, id)
     }

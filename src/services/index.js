@@ -9,6 +9,7 @@ import { CreateCustomer } from './customers.js';
 const customerName = readlineSync.question('Type in the Customer Name: ');
 const customerNumber = readlineSync.question('Type in the Customer Number: ');
 CreateCustomer(customerNumber,customerName)
+CreateCustomer(customerNumber,customerName)
 const idinput = readlineSync.question('Type in the Customer id: ');
 console.log(readcustomer(idinput))
 deleteCustomerById(idinput)
