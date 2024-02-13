@@ -27,7 +27,7 @@
     let does_exist=doesCostumerExist(id)
     if (is_valid && does_exist==false)
     {
-      const customer = new Customer(customerName,customerNumber)
+      const customer = new Customer(customerName,id)
       customers.push(customer)    }
     else
     {
@@ -57,10 +57,18 @@
 
   export async function customerRoutes(fastify, options) {
     fastify.get("/customers", async (request, reply) => {
-      return { customers: showallcustomers() };
+      return showallcustomers()
     });
   
     fastify.get("/customers/:id", async (request, reply) => {
-      return { customers: readcustomer(request.params.id) };
+      return readcustomer(request.params.id)
     });
+   
+    fastify.post("/customers",async (request, reply)=>{
+      return CreateCustomer(request.body.id,request.body.name )
+    })
+
+    fastify.delete("/customers/:id", async (request, reply)=>{
+      return deleteCustomerById(request.params.id)
+    })
   }
