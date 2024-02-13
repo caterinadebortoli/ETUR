@@ -29,4 +29,3 @@ CreateCustomer(id,customerName)
 const idinput = readlineSync.question('Type in the Customer id: ');
 console.log(readcustomer(idinput))
 deleteCustomerById(idinput)*/
-
