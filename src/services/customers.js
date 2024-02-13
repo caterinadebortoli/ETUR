@@ -1,3 +1,9 @@
+  import Fastify from 'fastify'
+  
+  const fastify = Fastify({
+    logger:true
+  })
+
   export default class Customer {
     constructor(name, number) {
       this.name = name;
@@ -47,4 +53,10 @@
 
   export function showallcustomers(){
     return customers
+  }
+
+  export async function routes () {
+    fastify.get('/customers', async (reply) => {
+      reply.send({hello: "world"})
+    });
   }
