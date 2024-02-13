@@ -57,7 +57,7 @@
 
   export async function customerRoutes(fastify, options) {
     fastify.get("/all", async (request, reply) => {
-      return { hello: "world" };
+      return { customers: showallcustomers() };
     });
   
     fastify.get("/:id", async (request, reply) => {
@@ -69,15 +69,23 @@
     schema: {
       response: {
         200: {
-          type: "object",
+          type: 'object',
           properties: {
-            hello: { type: "string" },
-          },
-        },
-      },
-    },
-  };
-  
+            customers: {
+               type: 'array',
+               items: {
+                 type: 'object',
+                 properties : {
+                   name: { type: 'string' },
+                   number: { type: 'string' }
+                 }
+               }
+            }
+          }
+        }
+      }
+    }
+}
  
   
 

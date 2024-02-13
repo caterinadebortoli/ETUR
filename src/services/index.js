@@ -2,7 +2,7 @@ import { readcustomer } from './customers.js';
 import readlineSync from 'readline-sync';
 import { deleteCustomerById } from './customers.js';
 import { CreateCustomer } from './customers.js';
-import { userRoutes } from './customers.js'
+import { customerRoutes } from './customers.js'
 import Fastify from 'fastify'
   
 const fastify = Fastify({
@@ -19,7 +19,7 @@ async function startServer() {
     }
   }
   
-  fastify.register(userRoutes, { prefix: "/customers" });
+  fastify.register(customerRoutes, { prefix: "/customers" });
   
   startServer();
 
