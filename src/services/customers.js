@@ -55,8 +55,12 @@
     return customers
   }
 
-  export async function routes () {
-    fastify.get('/customers', async (reply) => {
-      reply.send({hello: "world"})
+  async function userRoutes(fastify, options) {
+    fastify.get("/customers", async (request, reply) => {
+      return showallcustomers()
+    });
+  
+    fastify.get("/customers/:id", async (request, reply) => {
+      return readcustomer()
     });
   }
