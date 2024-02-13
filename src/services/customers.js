@@ -4,34 +4,30 @@ export default class Customer {
       this.number = number;
     }
   }
+
+  export const customers=[]
+
   export function Create(customerName, customerNumber){
     const customer = new Customer(customerName,customerNumber)
     customers.push(customer)
   }  
-  
-  export function readcustomer(id){
-    let customer = customers.find(customer=>customer.id==id)
-    return customer
-  }
 
-export function deleteCustomerById(id) {
-    // Find the index of the customer with the given ID
+ export function deleteCustomerById(id) {
     const index = customers.findIndex(customer => customer.number === id);
 
-    // If customer with the given ID exists, remove it from the array
     if (index !== -1) {
         customers.splice(index, 1);
-        console.log(`Customer with ID ${id} deleted successfully.`);
+        console.log(`Customer with Number ${id} deleted successfully.`);
     } else {
-        console.log(`Customer with ID ${id} not found.`);
+        console.log(`Customer with Number ${id} not found.`);
     }
-}
+ }
 
+ export function readcustomer(id){
+   let customer = customers.find(customer=>customer.id==id)
+   return customer
+ }
 
-export function showallcustomers(){
+ export function showallcustomers(){
     return customers
-}
-
-  export const customers=[]
- 
-
+ }
