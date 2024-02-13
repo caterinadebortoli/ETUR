@@ -12,7 +12,7 @@ export default class Customer {
   }  
   
   export function readcustomer(id){
-    let customer = customers.find(customer=>customer.number==id)
+    let customer = customers.find(customer=>customer.id==id)
     return customer
   }
 
