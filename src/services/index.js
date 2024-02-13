@@ -19,7 +19,7 @@ async function startServer() {
     }
   }
   
-  fastify.register(customerRoutes, { prefix: "/customers" });
+  fastify.register(customerRoutes);
   
   startServer();
 
