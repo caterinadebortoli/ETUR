@@ -55,8 +55,30 @@
     return customers
   }
 
-  export async function routes () {
-    fastify.get('/customers', async (reply) => {
-      reply.send({hello: "world"})
+  export async function customerRoutes(fastify, options) {
+    fastify.get("/all", async (request, reply) => {
+      return { hello: "world" };
+    });
+  
+    fastify.get("/:id", async (request, reply) => {
+      return { id: request.params.id };
     });
   }
+
+  const getOptions = {
+    schema: {
+      response: {
+        200: {
+          type: "object",
+          properties: {
+            hello: { type: "string" },
+          },
+        },
+      },
+    },
+  };
+  
+ 
+  
+
+  
