@@ -55,12 +55,30 @@
     return customers
   }
 
-  async function userRoutes(fastify, options) {
-    fastify.get("/customers", async (request, reply) => {
-      return showallcustomers()
+  export async function customerRoutes(fastify, options) {
+    fastify.get("/all", async (request, reply) => {
+      return { hello: "world" };
     });
   
-    fastify.get("/customers/:id", async (request, reply) => {
-      return readcustomer()
+    fastify.get("/:id", async (request, reply) => {
+      return { id: request.params.id };
     });
   }
+
+  const getOptions = {
+    schema: {
+      response: {
+        200: {
+          type: "object",
+          properties: {
+            hello: { type: "string" },
+          },
+        },
+      },
+    },
+  };
+  
+ 
+  
+
+  
