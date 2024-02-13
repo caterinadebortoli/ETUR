@@ -7,6 +7,8 @@ export default class Customer {
   export function Create(customerName, customerNumber){
     const customer = new Customer(customerName,customerNumber)
     customers.push(customer)
+    console.log("Customer successfully created")
+    console.log(showallcustomers())
   }  
   
   export function readcustomer(id){
@@ -15,7 +17,22 @@ export default class Customer {
   }
 
 
+export function validateid(id){
+    let is_valid= id.startsWith("ETUR-CN-")
+    return is_valid
+}
 
+export function CreateCustomer(id,customerName){
+    let is_valid=validateid(id)
+    if (is_valid)
+    {
+        Create(customerName, id)
+    }
+    else
+    {
+        console.log("The id given is not valid")
+    }
+}
 
 export function deleteCustomerById(id) {
     // Find the index of the customer with the given ID
