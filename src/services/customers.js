@@ -7,12 +7,24 @@ export default class Customer {
 
   export const customers=[]
 
-  export function Create(customerName, customerNumber){
-    const customer = new Customer(customerName,customerNumber)
-    customers.push(customer)
-  }  
+export function validateid(id){
+    let is_valid= id.startsWith("ETUR-CN-")
+    return is_valid
+}
 
- export function deleteCustomerById(id) {
+export function CreateCustomer(id,customerName){
+    let is_valid=validateid(id)
+    if (is_valid)
+    {
+        const customer = new Customer(customerName,customerNumber)
+        customers.push(customer)    }
+    else
+    {
+        console.log("The id given is not valid")
+    }
+}
+
+export function deleteCustomerById(id) {
     const index = customers.findIndex(customer => customer.number === id);
 
     if (index !== -1) {
