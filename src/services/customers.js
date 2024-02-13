@@ -1,4 +1,4 @@
-export default class Customer {
+  export default class Customer {
     constructor(name, number) {
       this.name = name;
       this.number = number;
@@ -7,39 +7,39 @@ export default class Customer {
 
   export const customers=[]
 
-export function validateid(id){
+  export function validateid(id){
     let is_valid= id.startsWith("ETUR-CN-")
     return is_valid
-}
+  }
 
-export function CreateCustomer(id,customerName){
+  export function CreateCustomer(id,customerName){
     let is_valid=validateid(id)
     if (is_valid)
     {
-        const customer = new Customer(customerName,customerNumber)
-        customers.push(customer)    }
+      const customer = new Customer(customerName,customerNumber)
+      customers.push(customer)    }
     else
     {
-        console.log("The id given is not valid")
+      console.log("The id given is not valid")
     }
-}
+  }
 
-export function deleteCustomerById(id) {
+  export function deleteCustomerById(id) {
     const index = customers.findIndex(customer => customer.number === id);
 
     if (index !== -1) {
-        customers.splice(index, 1);
-        console.log(`Customer with Number ${id} deleted successfully.`);
+      customers.splice(index, 1);
+      console.log(`Customer with Number ${id} deleted successfully.`);
     } else {
-        console.log(`Customer with Number ${id} not found.`);
+      console.log(`Customer with Number ${id} not found.`);
     }
- }
+  }
 
- export function readcustomer(id){
-   let customer = customers.find(customer=>customer.id==id)
-   return customer
- }
+  export function readcustomer(id){
+    let customer = customers.find(customer=>customer.id==id)
+    return customer
+  }
 
- export function showallcustomers(){
+  export function showallcustomers(){
     return customers
- }
+  }
