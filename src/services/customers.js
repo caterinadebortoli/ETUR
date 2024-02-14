@@ -22,6 +22,17 @@
     return customers.some(customer=>customer.number===id)
   }
 
+  export function login(number){
+    let islogged= customers.some(customer=>customer.number===number)
+    if (islogged){
+      let customer=customers.find(customer=>customer.number===number)
+      return customer
+    }
+    else{
+      return new Error('No Customer found')
+    }
+  }
+
   export function CreateCustomer(id,customerName){
     let is_valid=validateid(id)
     let does_exist=doesCostumerExist(id)
@@ -116,6 +127,14 @@
     fastify.get("/customers", async (request, reply) => {
       return showallcustomers()
     });
+
+    fastify.post("/login",async(request,reply)=>{
+      try{
+        return login(request.body.number)}
+        catch(err){
+          reply.code(404).send('User not found')
+        }
+    })
   
     fastify.get("/customers/:id",getcustomerSchema, async (request, reply) => {
       try{

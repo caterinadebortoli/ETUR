@@ -22,7 +22,7 @@ header {
     background-color: white;
 }
 
-button {
+.btn {
     background-color: rgb(103, 122, 52);
     border: none;
     color: white;
@@ -39,7 +39,7 @@ button {
     position: relative;
 }
 
-button:hover {
+.btn:hover {
     box-shadow: 0px 2px 6px 0px rgb(72, 71, 71);
 }
 
@@ -62,8 +62,16 @@ body {
 
 .category {
     display: block;
+    margin-left: 20px;
     width: 220px;
-    height: 40px;
+    height: 45px;
+}
+
+.categoryfilter {
+    display: block;
+    margin-left: 20px;
+    width: 220px;
+    height: 35px;
 }
 
 .id {
@@ -76,7 +84,7 @@ body {
 .customerId {
     display: block;
     margin-left: 10px;
-    width: 1700px;
+    width: 400px;
     height: 40px;
 }
 
@@ -90,19 +98,110 @@ body {
 
 .window-header {
     display: flex;
+}
+
+.popup {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f1f1f1;
+}
+
+.header-content {
+    display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.body-content {
+    display: flex;
+    align-items: center;
+}
+
+#user_btn {
+    background: none;
+    border: none;
+}
+#user_btn img {
+    width: 40px;
+    height: 40px;
+}
+
+.refresh_btn {
+    margin-left: 895px;
+}
+
+#refresh_btn {
+    background: none;
+    border: none;
+}
+
+#refresh_btn img {
+    height: 65px;
+    width: 80px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.user_btn{
+    margin-right: 20px;
 }
 
 .minimize {
     margin-top: 10px;
-    margin-left: 460px;
+    margin-left: 410px;
     height: 30px;
+    background-color: rgb(103, 122, 52);
+    border: none;
+    color: white;
+    padding: 8px 70px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 10px 475px;
+    cursor: pointer;
+    border-radius: 2%;
+    box-shadow: 0px 0px 5px 0px rgba(72,71,71);
+    overflow: visible;
+    position: relative;
 }
 
 .send {
     display: block;
     margin-left: 900px;
     margin-top: 20px;
+    background-color: rgb(103, 122, 52);
+    border: none;
+    color: white;
+    padding: 8px 70px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 20px 900px;
+    cursor: pointer;
+    border-radius: 2%;
+    box-shadow: 0px 0px 5px 0px rgba(72,71,71);
+    overflow: visible;
+    position: relative;
+}
+
+.status {
+    display: inline-block;
+    margin-top: 12px;
+    margin-left: 10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red !important;
+    z-index: 2;
 }
 
 @media (max-width: 600px) {

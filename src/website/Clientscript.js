@@ -3,7 +3,14 @@ document.getElementById('report_btn').addEventListener('click', function() {
     newDiv.className = 'window';
     newDiv.innerHTML = `
     <div class="window-header">
-        <input type="text" placeholder="   Kategorie" id="category" class="category">
+        <div id="status" class="status" style="background-color: red;">
+            <span style="visibility: hidden;">Unsichtbarer Text</span>
+        </div>
+        <select id="category" class="category">
+            <option value="Bug">Bug</option>
+            <option value="Feedback">Feedback</option>
+            <option value="Systemcrash">Systemcrash</option>
+        </select>
         <input type="text" placeholder="   Id" id="id" class="id">
         <input type="text" placeholder="   Customer-Id" id="customerId" class="customerId">
         <button class="minimize"> ^ </button>
@@ -65,4 +72,16 @@ document.getElementById('report_btn').addEventListener('click', function() {
             console.error('Error creating report:', error);
         });
     });
+});
+
+var userPopup = document.getElementById('user_popup');
+document.getElementById('user_btn').addEventListener('click', function() {
+    if (userPopup.style.display === 'none' || userPopup.style.display === '') {
+        userPopup.style.display = 'block';
+    } else {
+        userPopup.style.display = 'none';
+    }
+});
+document.getElementById('logout_btn').addEventListener('click', function() {
+    // Fügen Sie hier Ihren Code zum Abmelden des Benutzers ein
 });

@@ -5,10 +5,26 @@
 </head>
 <body>
     <header>
-        <h1 class="title">ETUR Client Page</h1>
+        <div class="header-content">
+            <h1 class="title">ETUR Client Page</h1>
+            <button class="user_btn" id="user_btn"><img src="/src/Images/client.png" alt="Benutzer"></button>
+        </div>
+        <div id="user_popup" class="popup">
+            <p id="username">Benutzername</p>
+            <button class="btn" id="logout_btn">Abmelden</button>
+        </div>
     </header>
     <div class="button-area">
-        <button id="report_btn">Report erstellen</button>
+        <div class="body-content">
+        <button class="btn" id="report_btn">Report erstellen</button>
+        <select class="categoryfilter" id="filter" name="filter">
+            <option value="all">Alle anzeigen</option>
+            <option value="bug">Bug</option>
+            <option value="feedback">Feedback</option>
+            <option value="systemcrash">Systemabsturz</option>
+        </select>
+        <button class="refresh_btn" id="refresh_btn"><img src="/src/Images/refresh.png" alt="Benutzer"></button>
+        </div>
     </div>
     <div id="rest-area" class="rest-area">
     </div>

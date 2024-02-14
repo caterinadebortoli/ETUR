@@ -26,7 +26,6 @@ export default class Report {
       closedAt,
       state,
       priority,
-      comments,
       closeReason,
       references
     ) {
@@ -42,8 +41,8 @@ export default class Report {
       this.closedAt = closedAt;
       this.state = state;
       this.priority = priority;
-      this.comments = comments;
-      this.closeReason = closeReason;
+      this.comments = [];
+      this.closeReason = closeReason || undefined;
       this.references = references;
     }
     
@@ -51,17 +50,62 @@ export default class Report {
   }
   export const reports=[]
 
+  export function validate_id(Id){
+    return reports.some(report=>report.Id===Id)
+  }
   export function Customer_CreateReport(Id, category, customerId, description){
     
+      if(!validate_id(Id)){
       let report = new Report(Id,category,customerId, description); 
-      reports.push(report);
+      reports.push(report);}
+      else{
+        throw new Error("The Id is not valid")
+      }
     }
 
   export function Customer_ShowReports(customerId){
-    let report = reports.find(report.customerId===customerId);
-    return report;
+    return reports.find(report=>report.customerId===customerId);
+    
   }
+  export function CustomerComment(Id,author, message, type){
+        
+    
+  var currentdate = new Date(); 
+  var datetime = currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+    let comment=new Comment(author,message,datetime, type);
+    let report= reports.find(r=>r.Id===Id);
+    if (!report) {
+        throw new Error("Report not found for the given Id");
+    }
 
+    report.comments.push(comment);
+}
+export function Customer_CloseReport(Id, closeReason = "No reason provided"){
+  let report =reports.find(report=>report.Id===Id);
+  report.state="Closed";
+  var currentdate = new Date(); 
+  var datetime = currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+  report.closedAt=datetime
+  report.closeReason = closeReason;
+}
+export function showClosedReports(customerId)
+{
+  return reports.find(report=>report.customerId===customerId && report.state==="Closed")
+}
+export function Customer_FilterReportByState(customerId,state){
+  let report = reports.filter(report=>report.state===state && report.customerId===customerId);
+  return report;
+}
     export function Pm_ModifyReport(Id, priority, state){
         let report = reports.find(report=>report.Id===Id);
         report.priority = priority;
@@ -76,13 +120,6 @@ export default class Report {
     export function Pm_AssignReportTo(Id, assignedTo){
         let report = reports.find(report=>report.Id===Id);
         report.assignedTo = assignedTo;
-    }
-
-    export function Pm_Comment(Id,author, message, createdAt,type){
-        
-        let comment=new Comment(author,message,createdAt, type);
-        let report=reports.find(report=>report.Id===Id);
-        report.comments.push(comment);
     }
 
     
@@ -111,13 +148,37 @@ export default class Report {
     }
 
   export async function customerReportsRoutes(fastify, options) {
-    fastify.get("/customer/reports/:Id", async (request, reply) => {
-      return Customer_ShowReports(request.query.Id);
+    fastify.get("/customer/reports", async (request, reply) => {
+      
+        return Customer_ShowReports(request.query.Id);
+        
     });
-  
+    fastify.get("/customer/reports/closed",async(request,reply)=>{
+      return showClosedReports(request.body.customerId)
+    });
+
     fastify.post("/customer/report", async (request, reply) => {
-      Customer_CreateReport(request.body.Id, request.body.category, request.body.customerId, request.body.description)
-    });
+      try{
+        Customer_CreateReport(request.body.Id, request.body.category, request.body.customerId, request.body.description)
+        reply.code(201).send('Report successfully created')
+      }
+      catch(err){
+        reply.code(500).send(err)
+      }
+      });
+      fastify.post("/customer/report/comments", async (request,reply)=>{
+        CustomerComment(request.body.Id,request.body.author,request.body.message,request.body.type)  
+      }) 
+      fastify.put("/customer/report",async(request,reply)=>{
+        if(request.body.closeReason===undefined){
+        Customer_CloseReport(request.body.Id)}
+        else{
+          Customer_CloseReport(request.body.Id, request.body.closeReason)
+        }
+      })
+      fastify.get("/customer/reports/state",async(request,reply)=>{
+        return Customer_FilterReportByState(request.body.customerId,request.body.state)
+      })
 
     
 }
@@ -134,8 +195,8 @@ export async function pmReportsRoutes(fastify, options){
         Pm_AssignReportTo(request.body.Id,request.body.assignedTo)  
       }) 
 
-      fastify.post("/pm/report/Comments", async (request,reply)=>{
-        Pm_Comment(request.body.Id,request.body.author,request.body.message,request.body.createdAt,request.body.type)  
+      fastify.post("/pm/report/comments", async (request,reply)=>{
+        Comment(request.body.Id,request.body.author,request.body.message,request.body.createdAt,request.body.type)  
       }) 
 
       fastify.get("/pm/reports/category/", async(request,reply)=>{
