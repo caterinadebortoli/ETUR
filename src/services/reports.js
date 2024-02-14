@@ -101,6 +101,7 @@ export default class Report {
 
     export function Dev_ShowReports(developer){
         let report = reports.find(report=>report.assignedTo === developer);
+        return report 
     }
 
     export function Dev_ModifyReport(Id, state, closeReason){
@@ -111,7 +112,7 @@ export default class Report {
 
   export async function customerReportsRoutes(fastify, options) {
     fastify.get("/customer/reports/:Id", async (request, reply) => {
-      return Customer_ShowReports(request.params.Id);
+      return Customer_ShowReports(request.query.Id);
     });
   
     fastify.post("/customer/report", async (request, reply) => {
@@ -125,16 +126,16 @@ export async function pmReportsRoutes(fastify, options){
         return Pm_ShowReports();
       });
 
-      fastify.put("/pm/report/:Id", async (request,reply)=>{
-        Pm_ModifyReport(request.params.Id,request.body.priority,request.body.state)  
+      fastify.put("/pm/report", async (request,reply)=>{
+        Pm_ModifyReport(request.body.Id,request.body.priority,request.body.state)  
       })
 
-      fastify.put("/pm/report/:Id", async (request,reply)=>{
-        Pm_AssignReportTo(request.params.Id,request.body.assignedTo)  
+      fastify.put("/pm/report/assign", async (request,reply)=>{
+        Pm_AssignReportTo(request.body.Id,request.body.assignedTo)  
       }) 
 
-      fastify.post("/pm/report/:Id/Comments", async (request,reply)=>{
-        Pm_Comment(request.params.Id,request.body.author,request.body.message,request.body.createdAt,request.body.type)  
+      fastify.post("/pm/report/Comments", async (request,reply)=>{
+        Pm_Comment(request.body.Id,request.body.author,request.body.message,request.body.createdAt,request.body.type)  
       }) 
 
       fastify.get("/pm/reports/category/", async(request,reply)=>{
@@ -152,9 +153,9 @@ export async function pmReportsRoutes(fastify, options){
 }
 export async function devReportsRoutes(fastify,options){
   fastify.get("/dev/reports",async(request,reply)=>{
-      return Dev_ShowReports(request.body.developer)
+      return Dev_ShowReports(request.query.developer)
   })
-  fastify.put("/dev/report/:Id",async(request,reply)=>{
-      Dev_ModifyReport(request.params.Id,request.body.state,request.body.closeReason)
+  fastify.put("/dev/report",async(request,reply)=>{
+      Dev_ModifyReport(request.body.Id,request.body.state,request.body.closeReason)
   })
 }

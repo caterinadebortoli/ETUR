@@ -119,7 +119,7 @@
   
     fastify.get("/customers/:id",getcustomerSchema, async (request, reply) => {
       try{
-       let customer=readcustomer(request.params.id)
+       let customer=readcustomer(request.query.id)
        reply.code(200).send({customer:customer})
       }
         catch(err){
