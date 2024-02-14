@@ -4,10 +4,17 @@ import { deleteCustomerById } from './customers.js';
 import { CreateCustomer } from './customers.js';
 import { customerRoutes } from './customers.js'
 import Fastify from 'fastify'
-  
+import cors from '@fastify/cors'
+import { customerReportsRoutes } from './reports.js';
+import { devReportsRoutes } from './reports.js';
+import { pmReportsRoutes } from './reports.js';
 const fastify = Fastify({
   logger:true
 })
+
+fastify.register(cors, {
+  origin: '*'
+});
 
 async function startServer() {
     try {
@@ -20,6 +27,9 @@ async function startServer() {
   }
   
   fastify.register(customerRoutes);
+  fastify.register(customerReportsRoutes);
+  fastify.register(pmReportsRoutes);
+  fastify.register(devReportsRoutes);
   
   startServer();
 

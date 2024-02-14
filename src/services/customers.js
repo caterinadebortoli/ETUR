@@ -50,6 +50,7 @@
 
   export function readcustomer(id){
     let customer = customers.find(customer=>customer.number===id)
+    
     if(customer===undefined)
     {
       throw new Error("Customer not found");
@@ -122,7 +123,7 @@
        reply.code(200).send({customer:customer})
       }
         catch(err){
-          reply.code(500).send(err)
+          reply.code(400).send(err)
         }
     });
    
@@ -133,7 +134,7 @@
         reply.code(201).send('Customer successfully created');
       } 
       catch(err) {
-        reply.code(500).send(err);
+        reply.code(400).send(err);
       }
     })
 
@@ -141,9 +142,9 @@
       try{
 
         reply.code(200).send("Customer deleted successfully");
-      }    
+      }
       catch(err){
-        reply.code(500).send(err);
+        reply.code(400).send(err)
       }
     })
   }

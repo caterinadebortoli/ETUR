@@ -10,18 +10,22 @@
     <header class="header">
         <div class="container">
             <div class="title">ETUR</div>
-            <div class="header-content">
-                
-                <div class="search-bar">
-                    <input type="text" placeholder="Search...">
-                </div>
-            </div>
         </div>
     </header>
     <p>
-    <button class="button">Create New Client</button>
+        <button class="button" id="createReportButton">Create Report</button>
     
-    <div class="container">
+        <div id="createClientFields" style="display: none;">
+            <div class="container">
+                <label for="id">Client Number:</label>
+                <input type="text" id="id" name="id" placeholder="Enter client number">
+                <label for="name">Client Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter client name">
+                <button id="submitButton">Submit</button>
+            </div>
+        </div>
+
+    <div id="clientsContainer" class="container">
         <div class="client-card">
             <div class="client-number">1</div>
             <div class="client-name">Zeiss</div>
@@ -46,7 +50,7 @@
             <div class="client-number">6</div>
             <div class="client-name">Comming soon...</div>
         </div>
-        <!-- Repeat client cards as needed -->
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
