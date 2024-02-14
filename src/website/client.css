@@ -66,6 +66,20 @@ body {
     height: 40px;
 }
 
+.id {
+    display: block;
+    margin-left: 10px;
+    width: 120px;
+    height: 40px;
+}
+
+.customerId {
+    display: block;
+    margin-left: 10px;
+    width: 1700px;
+    height: 40px;
+}
+
 .description {
     display: block;
     width: 1085px;
@@ -81,7 +95,7 @@ body {
 
 .minimize {
     margin-top: 10px;
-    margin-left: 775px;
+    margin-left: 460px;
     height: 30px;
 }
 

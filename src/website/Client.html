@@ -19,11 +19,13 @@
     newDiv.className = 'window';
     newDiv.innerHTML = `
         <div class="window-header">
-            <input type="text" placeholder="   Kategorie" class="category">
+            <input type="text" placeholder="   Kategorie" id="category" class="category">
+            <input type="text" placeholder="   Id" id="id" class="id">
+            <input type="text" placeholder="   Customer-Id" id="customerId" class="customerId">
             <button class="minimize"> ^ </button>
         </div>
-        <textarea placeholder="Neuer Eintrag" class="description"></textarea>
-        <button class="send">Senden</button>
+        <textarea placeholder="Neuer Eintrag" id="description" class="description"></textarea>
+        <button id="send" class="send">Senden</button>
     `;
     document.getElementById('rest-area').appendChild(newDiv);
     newDiv.querySelector('.minimize').addEventListener('click', function() {
