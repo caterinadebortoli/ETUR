@@ -4,8 +4,9 @@ header {
     text-align: left;
     padding: 5px;
     height: 50;
-    box-shadow: 0px,8px,16px,0px rgb(72, 71, 71);
+    box-shadow: 0px 0px 10px 0px rgba(72,71,71);
     overflow: visible;
+    position: relative;
     z-index: 1;
 }
 
@@ -25,7 +26,7 @@ button {
     background-color: rgb(103, 122, 52);
     border: none;
     color: white;
-    padding: 10px 80px;
+    padding: 8px 70px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -33,10 +34,65 @@ button {
     margin: 20px 30px;
     cursor: pointer;
     border-radius: 2%;
+    box-shadow: 0px 0px 5px 0px rgba(72,71,71);
+    overflow: visible;
+    position: relative;
+}
+
+button:hover {
+    box-shadow: 0px 2px 6px 0px rgb(72, 71, 71);
 }
 
 body {
     margin: 0;
     padding: 0;
     background-color: rgb(233, 237, 240);
+}
+
+.window {
+    background-color: white;
+    padding: 10px;
+    margin: 20px;
+    width: 1100px;
+    height: 310px;
+    overflow: hidden;
+    margin-left: 180px;
+    margin-right: 180px;
+}
+
+.category {
+    display: block;
+    width: 220px;
+    height: 40px;
+}
+
+.description {
+    display: block;
+    width: 1085px;
+    height: 180px;
+    margin-top: 10px;
+    resize: none;
+}
+
+.window-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.minimize {
+    margin-top: 10px;
+    margin-left: 775px;
+    height: 30px;
+}
+
+.send {
+    display: block;
+    margin-left: 900px;
+    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    .description, .send {
+        display: none;
+    }
 }

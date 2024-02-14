@@ -8,10 +8,41 @@
         <h1 class="title">ETUR Client Page</h1>
     </header>
     <div class="button-area">
-        <button>Klick mich</button>
+        <button id="report_btn">Report erstellen</button>
     </div>
-    <div class="rest-area">
-        <!-- Rest des Inhalts -->
+    <div id="rest-area" class="rest-area">
     </div>
+
+    <script>
+        document.getElementById('report_btn').addEventListener('click', function() {
+    var newDiv = document.createElement('div');
+    newDiv.className = 'window';
+    newDiv.innerHTML = `
+        <div class="window-header">
+            <input type="text" placeholder="   Kategorie" class="category">
+            <button class="minimize"> ^ </button>
+        </div>
+        <textarea placeholder="Neuer Eintrag" class="description"></textarea>
+        <button class="send">Senden</button>
+    `;
+    document.getElementById('rest-area').appendChild(newDiv);
+    newDiv.querySelector('.minimize').addEventListener('click', function() {
+        var description = newDiv.querySelector('.description');
+        var sendButton = newDiv.querySelector('.send');
+        var windowHeader = newDiv.querySelector('.window-header');
+        if (newDiv.style.height === '50px') {
+            newDiv.style.height = '310px';
+            description.style.display = 'block';
+            sendButton.style.display = 'block';
+        } else {
+            newDiv.style.height = '50px';
+            description.style.display = 'none';
+            sendButton.style.display = 'none';
+        }
+    });
+});
+
+    </script>
+
 </body>
 </html>
